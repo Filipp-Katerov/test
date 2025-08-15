@@ -1,0 +1,1023 @@
+{
+  "Uuid": "a995be9f-1d64-452b-9022-68644b49eb3c",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Выгрузка из модели",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [
+    {
+      "Id": "e564b932b4e64e19a8f45a7922239b76",
+      "Name": "Physical Categories",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Выполнение встроенного сценария Python."
+    },
+    {
+      "Id": "4f60c97eab164055a8b60472a5416304",
+      "Name": "KPI",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Выполнение встроенного сценария Python."
+    },
+    {
+      "Id": "5981dea68c0040d299ad81ed4e52bc4e",
+      "Name": "Annotation Categories",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Выполнение встроенного сценария Python."
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "HintPath": "D:\\Dropbox\\Dokshin and Partners CIS\\04 Projects\\023 ЗММК (GeoProMining)\\08 Рабочие файлы\\02 BIM\\11 Analytics\\Analytics.xlsx",
+      "InputValue": ".\\Analytics.xlsx",
+      "NodeType": "ExtensionNode",
+      "Id": "5cb7e78892844449a741d69dba6fc896",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2bcb73b5b5fc4e5cb14fec4dc3c5b571",
+          "Name": "",
+          "Description": "Путь к файлу",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Возможность выбрать файл в системе и получить путь к нему."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSOffice.Data.ExportToExcel@string,string,int,int,var[][],bool,bool",
+      "Id": "3da3ae4bae32448ab9b5b420c3d19423",
+      "Inputs": [
+        {
+          "Id": "51431da8d31a48c8b0dfff15c068e181",
+          "Name": "filePath",
+          "Description": "Файл книги Excel\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "07ebe8fbd74f4d6a866e41850d462dba",
+          "Name": "sheetName",
+          "Description": "Имя листа, в котором содержатся данные\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "785cb0ebd2e24e42a99ad6c152ea1e9c",
+          "Name": "startRow",
+          "Description": "Начальная строка для записи данных. Введите 0 для записи в строку 1, 1 — для строки 2 и т. д.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2e17e89d4fee414b9d206144665a3294",
+          "Name": "startColumn",
+          "Description": "Начальный столбец для записи данных. Введите 0 для записи в столбец A, 1 — для B и т. д.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d55d5cfce11340db8b0df60842e50f85",
+          "Name": "data",
+          "Description": "Данные для записи в электронную таблицу\n\nvar[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fba053ea59434ae5868ce28d16f59bb3",
+          "Name": "overWrite",
+          "Description": "Переключатель для очистки электронной таблицы перед записью\n\nbool\nЗначение по умолчанию : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "13342528f8ee4284a63bc46c46429dbc",
+          "Name": "writeAsString",
+          "Description": "Переключатель для записи файла Excel по строкам\n\nbool\nЗначение по умолчанию : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "426562b4c4914d53ba202c937864c565",
+          "Name": "data",
+          "Description": "Строки с данными из листа Excel",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Запись данных в формате электронной таблицы в Microsoft Excel. Данные записываются построчно, при этом вложенные списки записываются последовательными рядами. Значения строк и столбцов отсчитываются от нуля; например, значение в списке данных в точке [0,0] будет записано в ячейку A1. Нулевые значения и пустые списки записывают в Excel как пустые ячейки. Для работы с этим узлом необходимо приложение Microsoft Excel.\n\nData.ExportToExcel (filePath: string, sheetName: string, startRow: int, startColumn: int, data: var[][], overWrite: bool = false, writeAsString: bool = false): var[][]"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\nclr.AddReference(\"RevitServices\")\r\nfrom RevitServices.Persistence import DocumentManager\r\nclr.AddReference(\"RevitAPI\")\r\nfrom Autodesk.Revit.DB import *\r\n\r\n# Получение текущего документа\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\n\r\nreport_date = IN[0]\r\n\r\n# Функция для получения связанных моделей (Linked Models)\r\ndef get_linked_models(document):\r\n    linked_instances = FilteredElementCollector(document).OfClass(RevitLinkInstance).ToElements()\r\n    linked_docs = []\r\n\r\n    for link in linked_instances:\r\n        linked_doc = link.GetLinkDocument()\r\n        if linked_doc:\r\n            linked_docs.append(linked_doc)\r\n\r\n    return linked_docs\r\n\r\n# Функция для подсчета категорий модели (физические элементы)\r\ndef count_model_categories(document):\r\n    model_elements = FilteredElementCollector(document).WhereElementIsNotElementType().ToElements()\r\n    category_counts = {}\r\n\r\n    for element in model_elements:\r\n        category = element.Category\r\n        if category and category.CategoryType == CategoryType.Model:\r\n            category_name = category.Name\r\n            if category_name in category_counts:\r\n                category_counts[category_name] += 1\r\n            else:\r\n                category_counts[category_name] = 1\r\n\r\n    return category_counts\r\n\r\n# Получаем все связанные модели\r\nlinked_models = get_linked_models(doc)\r\n\r\n# Заголовки для таблицы\r\noutput_data = [[\"Model Name\", \"Category\", \"Count\", \"Report Date\"]]\r\n\r\n# Подсчет категорий по каждой модели\r\nfor linked_doc in linked_models:\r\n    model_name = linked_doc.Title  # Имя связанной модели\r\n    category_counts = count_model_categories(linked_doc)  # Категории модели\r\n\r\n    for category_name, count in category_counts.items():\r\n        output_data.append([model_name, category_name, count, str(report_date)])\r\n\r\n# Вывод результатов в формате, готовом для экспорта в Excel\r\nOUT = output_data",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "e564b932b4e64e19a8f45a7922239b76",
+      "Inputs": [
+        {
+          "Id": "32e14f19a4c24b3ba981b044dd199be4",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e96e0441d1eb47d9b3f965fad1ddcc5a",
+          "Name": "OUT",
+          "Description": "Результат сценария Python",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Выполнение встроенного сценария Python."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\nclr.AddReference(\"RevitServices\")\r\nfrom RevitServices.Persistence import DocumentManager\r\nclr.AddReference(\"RevitAPI\")\r\nfrom Autodesk.Revit.DB import *\r\n\r\n# Получение текущего документа\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\n\r\n# Функция для получения связанных моделей (Linked Models)\r\ndef get_linked_models(document):\r\n    linked_instances = FilteredElementCollector(document).OfClass(RevitLinkInstance).ToElements()\r\n    linked_docs = []\r\n\r\n    for link in linked_instances:\r\n        linked_doc = link.GetLinkDocument()\r\n        if linked_doc:\r\n            linked_docs.append(linked_doc)\r\n\r\n    return linked_docs\r\n\r\n# Функция для подсчета элементов (виды, спецификации, текстовые примечания) в документе\r\ndef count_elements(document):\r\n    views = FilteredElementCollector(document).OfClass(View).WhereElementIsNotElementType().ToElements()\r\n    schedules = FilteredElementCollector(document).OfClass(ViewSchedule).WhereElementIsNotElementType().ToElements()\r\n    text_notes = FilteredElementCollector(document).OfClass(TextNote).WhereElementIsNotElementType().ToElements()\r\n\r\n    view_count = len([view for view in views if not view.IsTemplate])\r\n    schedule_count = len(schedules)\r\n    text_note_count = len(text_notes)\r\n\r\n    return view_count, schedule_count, text_note_count\r\n\r\n# Получаем все связанные модели\r\nlinked_models = get_linked_models(doc)\r\n\r\n# Результат\r\nresults = {}\r\n\r\n# Проходимся по всем связанным моделям и подсчитываем элементы\r\nfor linked_doc in linked_models:\r\n    model_name = linked_doc.Title  # Имя связанной модели\r\n    view_count, schedule_count, text_note_count = count_elements(linked_doc)  # Подсчет элементов\r\n    results[model_name] = {\r\n        \"Views\": view_count,\r\n        \"Schedules\": schedule_count,\r\n        \"TextNotes\": text_note_count\r\n    }\r\n\r\n# Преобразуем результаты для экспорта в Excel\r\nexcel_data = []\r\nheader = [\"Model Name\", \"Category\", \"Count\"]\r\n\r\nfor model_name, categories in results.items():\r\n    for category, count in categories.items():\r\n        excel_data.append([model_name, category, count])\r\n\r\nOUT = (header, excel_data)\r\n",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "4f60c97eab164055a8b60472a5416304",
+      "Inputs": [
+        {
+          "Id": "78ea7acd064849b7b124de6953120f9d",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d4fe2b8e74ec458aac20105f2f5c2de6",
+          "Name": "OUT",
+          "Description": "Результат сценария Python",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Выполнение встроенного сценария Python."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "KPI",
+      "Id": "99e300e49a044b41abc8cd9e68490b86",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7c17b07f4f8244c1a4be39cc75e94dc4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание строки."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSOffice.Data.ExportToExcel@string,string,int,int,var[][],bool,bool",
+      "Id": "3a31596782b9429eb3fd7f76b41904a4",
+      "Inputs": [
+        {
+          "Id": "d8392a334b504ff6b967fdb77007a5ed",
+          "Name": "filePath",
+          "Description": "Файл книги Excel\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "417dd12bdecc41b3b193a4019159f920",
+          "Name": "sheetName",
+          "Description": "Имя листа, в котором содержатся данные\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "969f2f2bf5e8407097028e8c91afa8bb",
+          "Name": "startRow",
+          "Description": "Начальная строка для записи данных. Введите 0 для записи в строку 1, 1 — для строки 2 и т. д.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e060e3b7306643309c58d88b048e347d",
+          "Name": "startColumn",
+          "Description": "Начальный столбец для записи данных. Введите 0 для записи в столбец A, 1 — для B и т. д.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7c47d004143d42228a0470cd6d75746a",
+          "Name": "data",
+          "Description": "Данные для записи в электронную таблицу\n\nvar[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d5d2976f00b94305b67543f147b6a6a9",
+          "Name": "overWrite",
+          "Description": "Переключатель для очистки электронной таблицы перед записью\n\nbool\nЗначение по умолчанию : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2d3e959d3a5e4b408371b6419c3d594a",
+          "Name": "writeAsString",
+          "Description": "Переключатель для записи файла Excel по строкам\n\nbool\nЗначение по умолчанию : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7ec90b9fdb3b41bc816e9b3b9e2b9c39",
+          "Name": "data",
+          "Description": "Строки с данными из листа Excel",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Запись данных в формате электронной таблицы в Microsoft Excel. Данные записываются построчно, при этом вложенные списки записываются последовательными рядами. Значения строк и столбцов отсчитываются от нуля; например, значение в списке данных в точке [0,0] будет записано в ячейку A1. Нулевые значения и пустые списки записывают в Excel как пустые ячейки. Для работы с этим узлом необходимо приложение Microsoft Excel.\n\nData.ExportToExcel (filePath: string, sheetName: string, startRow: int, startColumn: int, data: var[][], overWrite: bool = false, writeAsString: bool = false): var[][]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "0;",
+      "Id": "5603bf8aefb64ffca86ba509314829e0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "898df0e1014c45d39b7af5bb627e2ead",
+          "Name": "",
+          "Description": "Значение выражения в строке 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Обеспечивает возможность непосредственного авторства кода DesignScript"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "3f3dcca06aae4060b74f8e643fd394be",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f26834d988bc4ab18577539849171413",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Выбор между значениями true и false."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\nclr.AddReference(\"RevitServices\")\r\nfrom RevitServices.Persistence import DocumentManager\r\nclr.AddReference(\"RevitAPI\")\r\nfrom Autodesk.Revit.DB import *\r\n\r\n# Получение текущего документа\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\n\r\nreport_date = IN[0]\r\n\r\n# Функция для получения связанных моделей (Linked Models)\r\ndef get_linked_models(document):\r\n    linked_instances = FilteredElementCollector(document).OfClass(RevitLinkInstance).ToElements()\r\n    linked_docs = []\r\n\r\n    for link in linked_instances:\r\n        linked_doc = link.GetLinkDocument()\r\n        if linked_doc:\r\n            linked_docs.append(linked_doc)\r\n\r\n    return linked_docs\r\n\r\n# Функция для подсчета категорий аннотаций (нефизические элементы)\r\ndef count_annotation_categories(document):\r\n    annotation_elements = FilteredElementCollector(document).WhereElementIsNotElementType().ToElements()\r\n    category_counts = {}\r\n\r\n    for element in annotation_elements:\r\n        category = element.Category\r\n        if category and category.CategoryType == CategoryType.Annotation:\r\n            category_name = category.Name\r\n            if category_name in category_counts:\r\n                category_counts[category_name] += 1\r\n            else:\r\n                category_counts[category_name] = 1\r\n\r\n    return category_counts\r\n\r\n# Получаем все связанные модели\r\nlinked_models = get_linked_models(doc)\r\n\r\n# Заголовки для таблицы\r\noutput_data = [[\"Model Name\", \"Category\", \"Count\", \"Report Date\"]]\r\n\r\n# Подсчет категорий по каждой модели\r\nfor linked_doc in linked_models:\r\n    model_name = linked_doc.Title  # Имя связанной модели\r\n    category_counts = count_annotation_categories(linked_doc)  # Категории модели\r\n\r\n    for category_name, count in category_counts.items():\r\n        output_data.append([model_name, category_name, count, str(report_date)])\r\n\r\n# Вывод результатов в формате, готовом для экспорта в Excel\r\nOUT = output_data",
+      "Engine": "CPython3",
+      "EngineName": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "5981dea68c0040d299ad81ed4e52bc4e",
+      "Inputs": [
+        {
+          "Id": "48c7356047cb43298a2b194da570a84b",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "505b442a69ea440aad0cd17f885817c9",
+          "Name": "OUT",
+          "Description": "Результат сценария Python",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Выполнение встроенного сценария Python."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.DateTime.ByDate@int,int,int",
+      "Id": "fa2463bf643d411d98febaa33d01271b",
+      "Inputs": [
+        {
+          "Id": "2cc473408f9645a9811a9c3a9b8cc78d",
+          "Name": "year",
+          "Description": "Точный год (1–9999)\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3e39ed20d5ff49f286759ba57070320d",
+          "Name": "month",
+          "Description": "Точный месяц (1–12)\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4fea0df173f14cfea1572c21f7e065d1",
+          "Name": "day",
+          "Description": "Точный день (1–[дней в месяце])\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "32d48eecd6f5447782554a8acd8977bc",
+          "Name": "dateTime",
+          "Description": "Значение DateTime, полученное из даты",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Создание нового значения DateTime с точной датой.\n\nDateTime.ByDate (year: int, month: int, day: int): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 2025.0,
+      "Id": "de9c948cae18494d91e13eb811ac37a2",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e8d0eece1c3a484f84e36e56a4df51cf",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание числа."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 2.0,
+      "Id": "f149117015ba457e9a3237dcd675aa1d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7dfcbc184565421b91b2609af5fa6468",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание числа."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 21.0,
+      "Id": "c5ea85822da948648a13adafe7e9fd4a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "51f5a2abbc0d49b183bf19d4c374d627",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание числа."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSOffice.Data.ExportToExcel@string,string,int,int,var[][],bool,bool",
+      "Id": "7f4136ecd0c645f1af0a3ad019dc6e06",
+      "Inputs": [
+        {
+          "Id": "c9df6ab644014c33ac53ac327877d917",
+          "Name": "filePath",
+          "Description": "Файл книги Excel\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a920bc088c404910a9a9dfac6881e926",
+          "Name": "sheetName",
+          "Description": "Имя листа, в котором содержатся данные\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "977656a17a7c4c848cf6395f8b30c39b",
+          "Name": "startRow",
+          "Description": "Начальная строка для записи данных. Введите 0 для записи в строку 1, 1 — для строки 2 и т. д.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "45b56f2b0a0d4081abd7ce35fc4c4056",
+          "Name": "startColumn",
+          "Description": "Начальный столбец для записи данных. Введите 0 для записи в столбец A, 1 — для B и т. д.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9f5c9e87ba0b4eb9b9561a59af953b17",
+          "Name": "data",
+          "Description": "Данные для записи в электронную таблицу\n\nvar[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4b0db1ce23ec46779374c1ad3e0db1ca",
+          "Name": "overWrite",
+          "Description": "Переключатель для очистки электронной таблицы перед записью\n\nbool\nЗначение по умолчанию : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b4a9f1fb5afb49c1b647618c5b3190b9",
+          "Name": "writeAsString",
+          "Description": "Переключатель для записи файла Excel по строкам\n\nbool\nЗначение по умолчанию : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ff1c4e0abe74936b2099f04a4566eff",
+          "Name": "data",
+          "Description": "Строки с данными из листа Excel",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Запись данных в формате электронной таблицы в Microsoft Excel. Данные записываются построчно, при этом вложенные списки записываются последовательными рядами. Значения строк и столбцов отсчитываются от нуля; например, значение в списке данных в точке [0,0] будет записано в ячейку A1. Нулевые значения и пустые списки записывают в Excel как пустые ячейки. Для работы с этим узлом необходимо приложение Microsoft Excel.\n\nData.ExportToExcel (filePath: string, sheetName: string, startRow: int, startColumn: int, data: var[][], overWrite: bool = false, writeAsString: bool = false): var[][]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "PhysicalElements",
+      "Id": "ee934f7a53bf4f3d88d27cebbf481bc2",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0c0a591867af4a0f93602eac59fba653",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание строки."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "AnnotationElements",
+      "Id": "41d9caf93dae4e5c95eb5b30bddedd0c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "08128d4f5ce64d8ba7d1d3244951d80f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Создание строки."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "2bcb73b5b5fc4e5cb14fec4dc3c5b571",
+      "End": "51431da8d31a48c8b0dfff15c068e181",
+      "Id": "8297294e804346c2b998b73a5b54a875",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2bcb73b5b5fc4e5cb14fec4dc3c5b571",
+      "End": "c9df6ab644014c33ac53ac327877d917",
+      "Id": "6e44e93a9a184f4abd44b1ccacbc4a13",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2bcb73b5b5fc4e5cb14fec4dc3c5b571",
+      "End": "d8392a334b504ff6b967fdb77007a5ed",
+      "Id": "bfb77c40660245b5b3a2672914aa84ed",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e96e0441d1eb47d9b3f965fad1ddcc5a",
+      "End": "d55d5cfce11340db8b0df60842e50f85",
+      "Id": "e421f4125e3e42cf8c087fd87b2cd427",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d4fe2b8e74ec458aac20105f2f5c2de6",
+      "End": "7c47d004143d42228a0470cd6d75746a",
+      "Id": "8a30fe6a97ee44b7a3c40d4103402b03",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7c17b07f4f8244c1a4be39cc75e94dc4",
+      "End": "417dd12bdecc41b3b193a4019159f920",
+      "Id": "f8848cfd3a8c4e58b69013e823d063f7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "898df0e1014c45d39b7af5bb627e2ead",
+      "End": "969f2f2bf5e8407097028e8c91afa8bb",
+      "Id": "c5aab294115746e48cbbc5e7d8614884",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "898df0e1014c45d39b7af5bb627e2ead",
+      "End": "e060e3b7306643309c58d88b048e347d",
+      "Id": "523bb562ad9d499e86f81c53d4950756",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "898df0e1014c45d39b7af5bb627e2ead",
+      "End": "785cb0ebd2e24e42a99ad6c152ea1e9c",
+      "Id": "6a5f62c8318c4af68bdd263080067338",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "898df0e1014c45d39b7af5bb627e2ead",
+      "End": "2e17e89d4fee414b9d206144665a3294",
+      "Id": "a52bbc46b7954b1d8a8f41b042ccf4d4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "898df0e1014c45d39b7af5bb627e2ead",
+      "End": "977656a17a7c4c848cf6395f8b30c39b",
+      "Id": "734182742a6642a191e4febf1da45b89",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "898df0e1014c45d39b7af5bb627e2ead",
+      "End": "45b56f2b0a0d4081abd7ce35fc4c4056",
+      "Id": "99cc401990b44ae7a71e1c648270533f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f26834d988bc4ab18577539849171413",
+      "End": "2d3e959d3a5e4b408371b6419c3d594a",
+      "Id": "b523fa6841534c7897d8182b97e5ebc9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f26834d988bc4ab18577539849171413",
+      "End": "13342528f8ee4284a63bc46c46429dbc",
+      "Id": "04beca3f37df4ceebe32565f2096c6bc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f26834d988bc4ab18577539849171413",
+      "End": "fba053ea59434ae5868ce28d16f59bb3",
+      "Id": "5535805cd76e40b39cf4b4fc9efa05c9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f26834d988bc4ab18577539849171413",
+      "End": "d5d2976f00b94305b67543f147b6a6a9",
+      "Id": "a9d147c33353405abc93daca9e212b7e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f26834d988bc4ab18577539849171413",
+      "End": "4b0db1ce23ec46779374c1ad3e0db1ca",
+      "Id": "a5a15a7098074f77bfb82cae0f367c1d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f26834d988bc4ab18577539849171413",
+      "End": "b4a9f1fb5afb49c1b647618c5b3190b9",
+      "Id": "d34df0e05ea1466cab1497aad329fd39",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "505b442a69ea440aad0cd17f885817c9",
+      "End": "9f5c9e87ba0b4eb9b9561a59af953b17",
+      "Id": "dc5881d0137a47be8dad3c46df35d07f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "32d48eecd6f5447782554a8acd8977bc",
+      "End": "48c7356047cb43298a2b194da570a84b",
+      "Id": "72767fdcf70544da8f3be48014cc8c39",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "32d48eecd6f5447782554a8acd8977bc",
+      "End": "32e14f19a4c24b3ba981b044dd199be4",
+      "Id": "0991032247644df2bb0af7c56125f45d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e8d0eece1c3a484f84e36e56a4df51cf",
+      "End": "2cc473408f9645a9811a9c3a9b8cc78d",
+      "Id": "dcb5dddd171047de8bf369096ea89f9e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7dfcbc184565421b91b2609af5fa6468",
+      "End": "3e39ed20d5ff49f286759ba57070320d",
+      "Id": "e6e54358239749ebbecc770f64f816bc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "51f5a2abbc0d49b183bf19d4c374d627",
+      "End": "4fea0df173f14cfea1572c21f7e065d1",
+      "Id": "c769e40e0ad349e988303533c40c02e3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0c0a591867af4a0f93602eac59fba653",
+      "End": "07ebe8fbd74f4d6a866e41850d462dba",
+      "Id": "9326fa3b037641fbb6de61680a7e1b62",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "08128d4f5ce64d8ba7d1d3244951d80f",
+      "End": "a920bc088c404910a9a9dfac6881e926",
+      "Id": "6c6dfc2a00ae4ee68f358110ae5e0265",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Analytics.xlsx",
+      "ReferenceType": "External",
+      "Nodes": [
+        "5cb7e78892844449a741d69dba6fc896"
+      ]
+    }
+  ],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Свойства",
+      "Version": "2.16",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "3.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "Нет",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.16.1.2727",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Фоновый просмотр",
+      "EyeX": -27.15077018737793,
+      "EyeY": 19.466115951538086,
+      "EyeZ": 73.690277099609375,
+      "LookX": 16.689359664916992,
+      "LookY": -18.08013916015625,
+      "LookZ": -80.665245056152344,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Name": "File Path",
+        "ShowGeometry": true,
+        "Id": "5cb7e78892844449a741d69dba6fc896",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2604.931918596692,
+        "Y": 281.84321320938784
+      },
+      {
+        "Name": "Data.ExportToExcel",
+        "ShowGeometry": true,
+        "Id": "3da3ae4bae32448ab9b5b420c3d19423",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2299.7020829247735,
+        "Y": 403.75057445701862
+      },
+      {
+        "Name": "Physical Categories",
+        "ShowGeometry": false,
+        "Id": "e564b932b4e64e19a8f45a7922239b76",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "X": 1165.429694477132,
+        "Y": 455.57265459018407
+      },
+      {
+        "Name": "KPI",
+        "ShowGeometry": false,
+        "Id": "4f60c97eab164055a8b60472a5416304",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "X": 1204.9804844444698,
+        "Y": 119.09424260043124
+      },
+      {
+        "Name": "String",
+        "ShowGeometry": true,
+        "Id": "99e300e49a044b41abc8cd9e68490b86",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1968.3700197572516,
+        "Y": 79.594556653016525
+      },
+      {
+        "Name": "Data.ExportToExcel",
+        "ShowGeometry": true,
+        "Id": "3a31596782b9429eb3fd7f76b41904a4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2305.4815649139214,
+        "Y": 34.719104669488161
+      },
+      {
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Id": "5603bf8aefb64ffca86ba509314829e0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2587.4210109510068,
+        "Y": 411.30786904534614
+      },
+      {
+        "Name": "Boolean",
+        "ShowGeometry": true,
+        "Id": "3f3dcca06aae4060b74f8e643fd394be",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2571.0087127977895,
+        "Y": 528.83521557733286
+      },
+      {
+        "Name": "Annotation Categories",
+        "ShowGeometry": false,
+        "Id": "5981dea68c0040d299ad81ed4e52bc4e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "X": 1149.8958087105368,
+        "Y": 641.368553042164
+      },
+      {
+        "Name": "DateTime.ByDate",
+        "ShowGeometry": true,
+        "Id": "fa2463bf643d411d98febaa33d01271b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 758.89595979478463,
+        "Y": 482.67461636978175
+      },
+      {
+        "Name": "Year",
+        "ShowGeometry": true,
+        "Id": "de9c948cae18494d91e13eb811ac37a2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 315.87507565869669,
+        "Y": 385.08199766077735
+      },
+      {
+        "Name": "Month",
+        "ShowGeometry": true,
+        "Id": "f149117015ba457e9a3237dcd675aa1d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 315.07618707021777,
+        "Y": 506.58426758894063
+      },
+      {
+        "Name": "Day",
+        "ShowGeometry": true,
+        "Id": "c5ea85822da948648a13adafe7e9fd4a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 316.30086703824941,
+        "Y": 629.77744410395633
+      },
+      {
+        "Name": "Data.ExportToExcel",
+        "ShowGeometry": true,
+        "Id": "7f4136ecd0c645f1af0a3ad019dc6e06",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2303.4183308473871,
+        "Y": 745.12027099136264
+      },
+      {
+        "Name": "String",
+        "ShowGeometry": true,
+        "Id": "ee934f7a53bf4f3d88d27cebbf481bc2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1948.4908964023948,
+        "Y": 413.70939597742768
+      },
+      {
+        "Name": "String",
+        "ShowGeometry": true,
+        "Id": "41d9caf93dae4e5c95eb5b30bddedd0c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1945.3629217990542,
+        "Y": 739.6683938782835
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "b545c003df3847f9872184ebe9b5a7d1",
+        "Title": "Date",
+        "DescriptionText": "<Дважды нажмите здесь, чтобы изменить описание группы>",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "de9c948cae18494d91e13eb811ac37a2",
+          "f149117015ba457e9a3237dcd675aa1d",
+          "c5ea85822da948648a13adafe7e9fd4a"
+        ],
+        "HasNestedGroups": false,
+        "Left": 305.07618707021777,
+        "Top": 274.08199766077735,
+        "Width": 154.79888858847892,
+        "Height": 487.695446443179,
+        "FontSize": 36.0,
+        "InitialTop": 385.08199766077735,
+        "InitialHeight": 389.695446443179,
+        "TextblockHeight": 101.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -97.886196693034663,
+    "Y": 25.615154948850034,
+    "Zoom": 0.69497931609330643
+  }
+}
