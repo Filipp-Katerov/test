@@ -1,0 +1,10 @@
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Name>ScanDeviation</Name>
+    <Assembly>C:\Path\ScanDeviation.dll</Assembly>
+    <FullClassName>CmdScanDeviation</FullClassName>
+    <AddInId>8D83C886-B739-4ACD-A9DB-1BC78C64DF5F</AddInId>
+    <VendorId>COMP</VendorId>
+    <VendorDescription>Deviation colorizer</VendorDescription>
+  </AddIn>
+</RevitAddIns>
